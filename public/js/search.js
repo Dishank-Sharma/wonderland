@@ -12,9 +12,11 @@ iconSearch.addEventListener("click", () => {
 });
 
 document.addEventListener('click', (event) => {
+    if (window.innerWidth <= 425) {
     // Check if the click was outside the form and icon
-    if (!searchForm.contains(event.target) && !iconSearch.contains(event.target)) {
-      searchForm.style.display = 'none';
+        if (!searchForm.contains(event.target) && !iconSearch.contains(event.target)) {
+        searchForm.style.display = 'none';
+        }
     }
   });
 
