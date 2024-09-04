@@ -1,0 +1,42 @@
+<nav class="sticky-top nav-full">
+  <a class="navbar-brand" href="/"><i class="fa-brands fa-weebly"></i><span>onderland</span></a>
+  <img id="searchIcon" src="https://cdn-icons-png.flaticon.com/512/10337/10337563.png" alt="">
+
+  <form class="searchForm" method="GET" action="/listings/search">
+    <div class="nav-search">
+      <input name="q" placeholder="Search country" id="search-listing" type="search">
+      <img class="submit" src="https://cdn-icons-png.flaticon.com/512/10337/10337563.png" alt="">
+
+    <ul>
+    </ul>
+    </div>
+  </form>
+
+  <div class="nav-right-div">
+    <a class="nav-link" href="/listings/new">Airbnb your home</a>
+
+    <div class="dropdown nav-user">
+      <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+        aria-expanded="false">
+        <i class="fa-solid fa-bars"></i>
+        <i class="fa-solid fa-circle-user"></i>
+      </a>
+
+      <ul class="dropdown-menu">
+        <% if (!currUser) {%>
+          <li><a class="dropdown-item" href="/signup" style="font-weight: 600;">Sign up</a></li>
+          <li><a class="dropdown-item" href="/login">Log in</a></li>
+          <%}%>
+            <% if (currUser) {%>
+              <li><a class="dropdown-item" href="/logout">Log out</a></li>
+              <%}%>
+                <hr />
+                <li><a class="dropdown-item" href="/listings/new">Airbnb your home</a></li>
+      </ul>
+    </div>
+  </div>
+
+
+
+  <script src="/js/search.js"></script>
+</nav>

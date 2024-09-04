@@ -1,0 +1,87 @@
+<!-- Success Flash Message -->
+
+<!-- Success -->
+<div class="modal fade" id="flashModalSuccess" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Notification</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <%= success %>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary flash_success_but" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Hidden element to store messages -->
+
+<div id="hidden_msg_success" data-success="<%=success%>"></div>
+
+
+<!-- Error -->
+<div class="modal fade" id="flashModalError" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header flash_header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Error</h1>
+                <button type="button" class="btn-close error-close-but" data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body flash_body">
+                <i class="fa-solid fa-triangle-exclamation"></i> &nbsp;  <%= error %>
+            </div>
+            <div class="modal-footer flash_footer">
+                <button type="button" class="btn btn-light flash_error_but" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Hidden element to store messages -->
+
+<div id="hidden_msg_error" data-error="<%=error%>"></div>
+
+
+<!-- Success Alert -->
+
+<% if (alert_success && alert_success.length){ %>
+    <div class="alert alert-info alert-dismissible fade show col-8 offset-2" role="alert">
+    <strong> <%=alert_success%> </strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+<% } %>
+
+
+<!-- Error Alert -->
+
+<% if (alert_error && alert_error.length){ %>
+    <div class="alert alert-danger alert-dismissible fade show col-8 offset-2" role="alert">
+    <strong><i class="fa-solid fa-triangle-exclamation" style="color: red;"></i> &nbsp; <%=alert_error%> </strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+<% } %>
+
+
+<script>
+
+    document.addEventListener('DOMContentLoaded', () => {
+
+        let success = document.getElementById("hidden_msg_success").getAttribute("data-success")
+        let error = document.getElementById("hidden_msg_error").getAttribute("data-error")
+
+        if (success) {
+            let flashModal = new bootstrap.Modal(document.getElementById('flashModalSuccess'));
+            flashModal.show();
+        }
+        if (error) {
+            let flashModal = new bootstrap.Modal(document.getElementById('flashModalError'));
+            flashModal.show();
+        }
+
+    })
+
+</script>

@@ -1,0 +1,107 @@
+<% layout("/layouts/boilerplate") %>
+
+    <div id="filters">
+        <div class="allFilters">
+            <div class="filter">
+                <div><i class="fa-solid fa-fire"></i></div>
+                <p>Trending</p>
+            </div>
+            <div class="filter">
+                <div><i class="fa-solid fa-bed"></i></div>
+                <p>Rooms</p>
+            </div>
+            <div class="filter">
+                <div><i class="fa-solid fa-mountain-city"></i></div>
+                <p>Iconic Cities</p>
+            </div>
+            <div class="filter">
+                <div><i class="fa-solid fa-mountain"></i></div>
+                <p>Mountains</p>
+            </div>
+            <div class="filter">
+                <div><i class="fa-solid fa-chess-rook"></i></div>
+                <p>Castles</p>
+            </div>
+            <div class="filter">
+                <div><i class="fa-solid fa-person-swimming"></i></div>
+                <p>Amazing Pools</p>
+            </div>
+            <div class="filter">
+                <div><i class="fa-solid fa-campground"></i></div>
+                <p>Camping</p>
+            </div>
+            <div class="filter">
+                <div><i class="fa-solid fa-cow"></i></div>
+                <p>Farms</p>
+            </div>
+            <div class="filter">
+                <div><i class="fa-regular fa-snowflake"></i></div>
+                <p>Arctic</p>
+            </div>
+        </div>
+        <div class="tax-toggle">
+            <div class="form-check-reverse form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                <label class="form-check-label" for="flexSwitchCheckDefault">Display after taxes</label>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Main -->
+    <div class="row row-cols-1 row-cols-lg-3 row-cols-md-3 row-cols-sm-2 index-row mt-3">
+        <% for (listing of allLinstings) { %>
+
+            <a href="/listings/<%= listing._id %>" class="card col listing-card" style="width: 17rem;">
+                <div class="card-img index-img"><img src="<%= listing.image.url %>" class="card-img-top index-inner-img"
+                        alt="listing Image" style="height: 15rem;"></div>
+                <div class="card-body">
+                    <p class="card-text">
+                        <b>
+                            <%= listing.title %>
+                        </b> <br>
+                        <b class="indexLocation" style="opacity: 0.5; font-size: 0.9rem;">
+                            <%= listing.location %>, <%= listing.country %>
+                        </b> <br>
+                        <b>&#8377; <%= listing.price.toLocaleString("en-IN") %></b> <b style="opacity: 0.5;">night</b>
+                        <i class="tax-info">&nbsp; &nbsp;+18% GST</i>
+                    </p>
+                </div>
+            </a>
+
+            <%}%>
+    </div>
+
+    <script>
+        let taxSwitch = document.getElementById('flexSwitchCheckDefault')
+        let taxInfos = document.getElementsByClassName('tax-info')
+
+        taxSwitch.addEventListener("click", () => {
+            for (taxInfo of taxInfos){
+                if (taxInfo.style.display != 'inline'){
+                    taxInfo.style.display = 'inline'
+                }
+                else{
+                    taxInfo.style.display = 'none'
+                }
+            }
+            
+        });
+        let allFilters = document.getElementsByClassName('allFilters');
+
+
+        // allFilters[0].addEventListener('scroll', function(e) {
+        //     console.log(e.target.value)
+        // })
+
+        allFilters[0].addEventListener('scroll', function() {
+            
+        if (allFilters[0].scrollLeft > 0) { 
+            allFilters[0].classList.add('hide-after');
+        } else {
+            allFilters[0].classList.remove('hide-after');
+        }
+});
+        
+
+    </script>
